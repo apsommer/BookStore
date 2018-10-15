@@ -14,6 +14,7 @@ public final class BookContract {
         // column names
         public static final String _ID = BaseColumns._ID; // _ID is inherent to Android framework
         public static final String COLUMN_BOOK_NAME = "name";
+        public static final String COLUMN_BOOK_AUTHOR = "author";
         public static final String COLUMN_BOOK_PRICE = "price";
         public static final String COLUMN_BOOK_QUANTITY = "quantity";
         public static final String COLUMN_BOOK_SUPPLIER_NAME = "supplier_name";

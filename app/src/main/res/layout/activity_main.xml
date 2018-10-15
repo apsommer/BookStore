@@ -11,6 +11,7 @@
     >
 
     <TextView
+        android:id="@+id/textview_activity_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 

@@ -18,21 +18,26 @@ public class BookDbHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    // onCreate is only called from constructor if DATABASE_NAME does not exist on device
     // create new persistent sqlite database on device
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        // SQL create statement
-        // CREATE TABLE books (_id INTEGER, name TEXT, breed TEXT, gender INTEGER, weight INTEGER);
+        // build SQL query:
+        // CREATE TABLE books (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL,
+        // author TEXT, price INTEGER NOT NULL, quantity INTEGER NOT NULL DEFAULT 0,
+        // supplier_name TEXT, supplier_phone TEXT );
         String SQL_CREATE_PETS_TABLE =
                 "CREATE TABLE " + BookEntry.TABLE_NAME + " (" +
                         BookEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         BookEntry.COLUMN_BOOK_NAME + " TEXT NOT NULL, " +
+                        BookEntry.COLUMN_BOOK_AUTHOR+ " TEXT, " +
                         BookEntry.COLUMN_BOOK_PRICE + " INTEGER NOT NULL, " +
                         BookEntry.COLUMN_BOOK_QUANTITY + " INTEGER NOT NULL DEFAULT 0, " +
                         BookEntry.COLUMN_BOOK_SUPPLIER_NAME + " TEXT, " +
                         BookEntry.COLUMN_BOOK_SUPPLIER_PHONE + " TEXT );";
 
+        // execute SQL query
         db.execSQL(SQL_CREATE_PETS_TABLE);
 
     }

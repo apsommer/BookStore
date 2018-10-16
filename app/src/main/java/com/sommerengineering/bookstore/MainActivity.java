@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         // BookEntry._ID is autoincremented
         values.put(BookEntry.COLUMN_BOOK_NAME, "The Spot");
         values.put(BookEntry.COLUMN_BOOK_AUTHOR, "David Means");
-        values.put(BookEntry.COLUMN_BOOK_PRICE, 799);
+        values.put(BookEntry.COLUMN_BOOK_PRICE, 7.99);
         values.put(BookEntry.COLUMN_BOOK_QUANTITY, 12);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, "Penguin Publishers");
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, "800-455-8234");
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         // returns row position for successful insert and -1 for error
-        long newRowId = db.insert(BookEntry.TABLE_NAME, null, values);
+        db.insert(BookEntry.TABLE_NAME, null, values);
 
     }
 
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 int currentID = cursor.getInt(idColumnIndex);
                 String currentName = cursor.getString(nameColumnIndex);
                 String currentAuthor = cursor.getString(authorColumnIndex);
-                int currentPrice = cursor.getInt(priceColumnIndex);
+                float currentPrice = cursor.getFloat(priceColumnIndex);
                 int currentQuantity = cursor.getInt(quantityColumnIndex);
                 String currentSupplierName = cursor.getString(supplierNameColumnIndex);
                 String currentSupplierPhone = cursor.getString(supplierPhoneColumnIndex);

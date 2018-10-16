@@ -11,13 +11,25 @@ public final class BookContract {
         // table name
         public static final String TABLE_NAME = "books";
 
-        // column names
-        public static final String _ID = BaseColumns._ID; // _ID is inherent to Android framework
+        // int _ID is inherent to Android framework
+        public static final String _ID = BaseColumns._ID;
+
+        // String name is the book name
         public static final String COLUMN_BOOK_NAME = "name";
+
+        // String author is the author name
         public static final String COLUMN_BOOK_AUTHOR = "author";
+
+        // float price is the book price in USD
         public static final String COLUMN_BOOK_PRICE = "price";
+
+        // int quantity is the total number of this item in stock
         public static final String COLUMN_BOOK_QUANTITY = "quantity";
+
+        // String supplier_name is the supplier name
         public static final String COLUMN_BOOK_SUPPLIER_NAME = "supplier_name";
+
+        // String supplier_phone is the supplier phone number
         public static final String COLUMN_BOOK_SUPPLIER_PHONE = "supplier_phone";
 
     }

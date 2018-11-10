@@ -3,7 +3,7 @@
     <!-- app name -->
     <string name="app_name">Book Store</string>
 
-    <!-- menu options for MainActivity -->
+    <!-- menu options for CatalogActivity -->
     <string name="action_insert_placeholder_data">Insert placeholder data</string>
     <string name="action_delete_all_entries">Delete all entries</string>
 

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.sommerengineering.bookstore.data.BookDbHelper;
 import com.sommerengineering.bookstore.data.BookContract.BookEntry;
 
-public class MainActivity extends AppCompatActivity {
+public class CatalogActivity extends AppCompatActivity {
 
     // subclass of SQLiteOpenHelper manages interactions with sqlite databases
     private BookDbHelper mDbHelper;
@@ -22,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
         // initialize activity with super constructor and set layout View
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_catalog);
 
-        // temporary helper method displays database contents to MainActivity
+        // temporary helper method displays database contents to catalog activity
         displayDatabase();
 
     }
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         // defer to super constructor
         super.onStart();
 
-        // temporary helper method displays database contents to MainActivity
+        // temporary helper method displays database contents to CatalogActivity
         displayDatabase();
     }
 
@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        // inflate the menu options from layout menu_main_activity
-        getMenuInflater().inflate(R.menu.menu_main_activity, menu);
+        // inflate the menu options from layout menu_catalog_activity
+        getMenuInflater().inflate(R.menu.menu_catalog_activity, menu);
         return true;
     }
 

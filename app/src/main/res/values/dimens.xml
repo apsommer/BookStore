@@ -7,4 +7,7 @@
     <!-- common margin value used in both activities -->
     <dimen name="activity_margin">12dp</dimen>
 
+    <!-- margin for the "Sale" button in list_item -->
+    <dimen name="button_margin">4dp</dimen>
+
 </resources>

@@ -215,7 +215,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
 
         // define projection (column names) for query
-        String[] projection = {BookEntry._ID, BookEntry.COLUMN_BOOK_NAME, BookEntry.COLUMN_BOOK_AUTHOR};
+        String[] projection = {BookEntry._ID, BookEntry.COLUMN_BOOK_NAME, BookEntry.COLUMN_BOOK_PRICE, BookEntry.COLUMN_BOOK_QUANTITY};
 
         // CursorLoader requires the column projection includes the _ID column
         return new CursorLoader(this, BookEntry.CONTENT_URI, projection, null, null, null);

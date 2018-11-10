@@ -32,24 +32,23 @@ public class BookCursorAdapter extends CursorAdapter {
 
         // get references to view entities
         TextView nameTextView = (TextView) view.findViewById(R.id.name);
-        TextView authorTextView = (TextView) view.findViewById(R.id.author);
+        TextView priceTextView = (TextView) view.findViewById(R.id.price);
+        TextView quantityTextView = (TextView) view.findViewById(R.id.quantity);
 
         // get index position for each column
-        int nameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_NAME);
-        int authorColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_AUTHOR);
+        int nameIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_NAME);
+        int priceIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_PRICE);
+        int quantityIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_QUANTITY);
 
         // extract data from cursor
-        String nameString = cursor.getString(nameColumnIndex);
-        String authorString = cursor.getString(authorColumnIndex);
-
-        // if the breed has not been specified then display a default message
-        if (TextUtils.isEmpty(authorString)) {
-            authorString = context.getString(R.string.unknown_author);
-        }
+        String name = cursor.getString(nameIndex);
+        float price = cursor.getFloat(priceIndex);
+        int quantity = cursor.getInt(quantityIndex);
 
         // set cursor data on views
-        nameTextView.setText(nameString);
-        authorTextView.setText(authorString);
+        nameTextView.setText(name);
+        priceTextView.setText(String.format("$%.2f", price));
+        quantityTextView.setText(Integer.toString(quantity));
 
     }
 }

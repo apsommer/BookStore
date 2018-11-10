@@ -15,7 +15,7 @@
     <string name="unknown_author">Unknown author</string>
 
     <!-- titles for the empty state of the list view [CHAR LIMIT=50] -->
-    <string name="empty_view_title_text">Change the image above and this title ...</string>
+    <string name="empty_view_title_text">It\'s a bit lonely here...</string>
     <string name="empty_view_subtitle_text">Get started by adding a book</string>
 
     <!-- dialog message asking the user to confirm delete action [CHAR LIMIT=NONE] -->
@@ -44,13 +44,13 @@
     <!-- text hint for input fields in the editor [CHAR LIMIT=30] -->
     <string name="hint_book_name">Title</string>
     <string name="hint_book_author">Author</string>
-    <string name="hint_book_price">6.99</string>
+    <string name="hint_book_price">14.95</string>
     <string name="hint_book_quantity">5</string>
     <string name="hint_supplier_name">Penguin Publishers</string>
     <string name="hint_supplier_phone">800-123-4567</string>
 
     <!-- units of currency for the price of the book [CHAR LIMIT=5] -->
-    <string name="unit_book_price">(USD)</string>
+    <string name="unit_book_price">USD</string>
 
     <!-- app bar titles for two different modes of editor activity [CHAR LIMIT=20] -->
     <string name="editor_activity_title_edit_book">Edit book</string>

@@ -50,8 +50,8 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
             public void onClick(View view) {
 
                 // explicit intent to open editor activity
-//                Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
+                startActivity(intent);
 
             }
 
@@ -79,15 +79,15 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-//                // explicit intent to open editor activity
-//                Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
-//
-//                // include the content URI for the selected pet with the intent
-//                Uri selectedPetURI = ContentUris.withAppendedId(PetEntry.CONTENT_URI, id);
-//                intent.setData(selectedPetURI);
-//
-//                // start editor activity in "edit mode"
-//                startActivity(intent);
+                // explicit intent to open editor activity
+                Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
+
+                // include the content URI for the selected pet with the intent
+                Uri selectedPetURI = ContentUris.withAppendedId(BookEntry.CONTENT_URI, id);
+                intent.setData(selectedPetURI);
+
+                // start editor activity in "edit mode"
+                startActivity(intent);
 
             }
 
@@ -197,11 +197,11 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
         // row delete failed and therefore the number of deleted rows is zero
         if (deletedRows == 0) {
-            toastMessage = getString(R.string.delete_failed);
+            toastMessage = getString(R.string.toast_delete_failed);
 
         // row delete successful
         } else {
-            toastMessage = getString(R.string.delete_successful);
+            toastMessage = getString(R.string.toast_delete_successful);
         }
 
         // display toast message

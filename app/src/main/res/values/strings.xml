@@ -3,32 +3,57 @@
     <!-- app name -->
     <string name="app_name">Book Store</string>
 
-    <!-- menu options for catalog activity -->
+    <!-- menu options for catalog activity [CHAR LIMIT=20] -->
     <string name="action_insert_placeholder_data">Insert placeholder data</string>
     <string name="action_delete_all_entries">Delete all entries</string>
+
+    <!-- menu options for editor activity [CHAR LIMIT=20] -->
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
 
     <!-- label for list item if the author is not specified -->
     <string name="unknown_author">Unknown author</string>
 
-    <!-- title text for the empty view [CHAR LIMIT=50] -->
+    <!-- titles for the empty state of the list view [CHAR LIMIT=50] -->
     <string name="empty_view_title_text">Change the image above and this title ...</string>
-
-    <!-- subtitle text for the empty view [CHAR LIMIT=50] -->
     <string name="empty_view_subtitle_text">Get started by adding a book</string>
 
-    <!-- dialog message asking the user to confirm deleting all books [CHAR LIMIT=NONE] -->
+    <!-- dialog message asking the user to confirm delete action [CHAR LIMIT=NONE] -->
     <string name="dialog_msg_delete_all_books">Delete all books?</string>
-
-    <!-- dialog button text for the option to confirm delete [CHAR LIMIT=20] -->
+    <string name="dialog_msg_delete_single_pet">Delete this book?</string>
     <string name="delete">Delete</string>
-
-    <!-- dialog button text for the option to cancel deletion [CHAR LIMIT=20] -->
     <string name="cancel">Cancel</string>
 
-    <!-- Toast message for successful delete [CHAR LIMIT=NONE] -->
-    <string name="delete_successful">Book deleted</string>
+    <!-- dialog message asking the user to confirm leaving editor with unsaved changes [CHAR LIMIT=NONE] -->
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+    <string name="discard_changes">Discard</string>
+    <string name="keep_editing">Keep Editing</string>
 
-    <!-- Toast message for failes delete [CHAR LIMIT=NONE] -->
-    <string name="delete_failed">Error with deleting book</string>
+    <!-- toast messages for status of delete action [CHAR LIMIT=NONE] -->
+    <string name="toast_delete_successful">Book deleted</string>
+    <string name="toast_delete_failed">Error with deleting book</string>
+    <string name="toast_save_successful">Book saved</string>
+    <string name="toast_save_failed">Error saving book</string>
+
+    <!-- label for categories in the editor [CHAR LIMIT=30] -->
+    <string name="category_overview">Overview</string>
+    <string name="category_price">Price</string>
+    <string name="category_quantity">Quantity</string>
+    <string name="category_supplier">Supplier</string>
+
+    <!-- text hint for input fields in the editor [CHAR LIMIT=30] -->
+    <string name="hint_book_name">Title</string>
+    <string name="hint_book_author">Author</string>
+    <string name="hint_book_price">6.99</string>
+    <string name="hint_book_quantity">5</string>
+    <string name="hint_supplier_name">Penguin Publishers</string>
+    <string name="hint_supplier_phone">800-123-4567</string>
+
+    <!-- units of currency for the price of the book [CHAR LIMIT=5] -->
+    <string name="unit_book_price">(USD)</string>
+
+    <!-- app bar titles for two different modes of editor activity [CHAR LIMIT=20] -->
+    <string name="editor_activity_title_edit_book">Edit book</string>
+    <string name="editor_activity_title_add_a_book">Add a book</string>
 
 </resources>

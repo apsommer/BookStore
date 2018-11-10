@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin">12dp</dimen>
+
+    <!-- margin around the floating action button in catalog activity -->
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- common margin value used in both activities -->
+    <dimen name="activity_margin">12dp</dimen>
+
 </resources>

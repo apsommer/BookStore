@@ -1,42 +1,98 @@
 package com.sommerengineering.bookstore;
 
+import android.app.AlertDialog;
+import android.app.LoaderManager;
+import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.CursorLoader;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sommerengineering.bookstore.data.BookDbHelper;
 import com.sommerengineering.bookstore.data.BookContract.BookEntry;
 
-public class CatalogActivity extends AppCompatActivity {
+public class CatalogActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    // subclass of SQLiteOpenHelper manages interactions with sqlite databases
-    private BookDbHelper mDbHelper;
+    // integer ID of cursor loader
+    private static final int BOOK_LOADER = 0;
+
+    // reference to cursor adapter that populates list view in activity_catalog
+    BookCursorAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // initialize activity with super constructor and set layout View
+        // defer to superclass constructor for initialization
         super.onCreate(savedInstanceState);
+
+        // set the view as activity_catalog
         setContentView(R.layout.activity_catalog);
 
-        // temporary helper method displays database contents to catalog activity
-        displayDatabase();
+        // setup FAB to open EditorActivity
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
 
-    }
+            @Override
+            public void onClick(View view) {
 
-    @Override
-    protected void onStart() {
+                // explicit intent to open editor activity
+//                Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
+//                startActivity(intent);
 
-        // defer to super constructor
-        super.onStart();
+            }
 
-        // temporary helper method displays database contents to CatalogActivity
-        displayDatabase();
+        });
+
+        // initialize loader
+        getLoaderManager().initLoader(BOOK_LOADER, null, this);
+
+        // get reference to list view in activity_catalog
+        ListView listView = (ListView) findViewById(R.id.list_view);
+
+        // get view reference for empty state and set it on the list view
+        View emptyView = findViewById(R.id.empty_view);
+        listView.setEmptyView(emptyView);
+
+        // create new cursor adapter and set it on the list view
+        // the cursor input parameter is null because a loader supplies cursors to the adapter
+        mAdapter = new BookCursorAdapter(this, null);
+        listView.setAdapter(mAdapter);
+
+        // setup click listener for items in the list view
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            // clicking an item in the list view opens the editor activity in "edit mode" for that pet
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+//                // explicit intent to open editor activity
+//                Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
+//
+//                // include the content URI for the selected pet with the intent
+//                Uri selectedPetURI = ContentUris.withAppendedId(PetEntry.CONTENT_URI, id);
+//                intent.setData(selectedPetURI);
+//
+//                // start editor activity in "edit mode"
+//                startActivity(intent);
+
+            }
+
+        });
+
     }
 
     // create an overflow menu in the app bar, defaults to top right
@@ -60,13 +116,12 @@ public class CatalogActivity extends AppCompatActivity {
             case R.id.action_insert_placeholder_data:
 
                 insertPlaceholderBook();
-                displayDatabase();
                 return true;
 
             // option: delete all entries
             case R.id.action_delete_all_entries:
 
-                // TODO delete all rows of table
+                showDeleteConfirmationDialog();
                 return true;
         }
 
@@ -88,81 +143,97 @@ public class CatalogActivity extends AppCompatActivity {
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, "Penguin Publishers");
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, "800-455-8234");
 
-        // value assigned to mDbHelper in onCreate
-        // get reference to sqlite database inventory.db in write mode
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
-        // returns row position for successful insert and -1 for error
-        db.insert(BookEntry.TABLE_NAME, null, values);
+        // perform an insert on the provider using a content resolver
+        // the correct content URI is defined as a constant in BookContract
+        getContentResolver().insert(BookEntry.CONTENT_URI, values);
 
     }
 
-    // display sqlite database values
-    private void displayDatabase() {
+    // create and show the "delete confirmation" dialog box
+    private void showDeleteConfirmationDialog() {
 
-        // assign value to helper that manages interactions with sqlite databases
-        mDbHelper = new BookDbHelper(this);
+        // alert dialog builder constructs the attributes of the message box
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        // get reference to sqlite database inventory.db in read mode
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        // primary message title
+        builder.setMessage(R.string.dialog_msg_delete_all_books);
 
-        // define projection (column names) for query
-        String[] projection = {BookEntry._ID, BookEntry.COLUMN_BOOK_NAME,
-                BookEntry.COLUMN_BOOK_AUTHOR, BookEntry.COLUMN_BOOK_PRICE,
-                BookEntry.COLUMN_BOOK_QUANTITY, BookEntry.COLUMN_BOOK_SUPPLIER_NAME,
-                BookEntry.COLUMN_BOOK_SUPPLIER_PHONE};
+        // positive button is a confirmation to delete all books from the database
+        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
 
-        // query the books table
-        // equivalent to SQL query "SELECT * FROM books;"
-        Cursor cursor = db.query(BookEntry.TABLE_NAME, projection,
-                null, null, null, null, null, null);
-
-        // get reference to textview in layout activity_catalog
-        TextView displayView = (TextView) findViewById(R.id.textview_activity_main);
-
-        // try-finally block ensures that the cursor is always closed
-        try {
-
-            // display the number of rows in the Cursor (= number of rows in pets table)
-            displayView.setText("The books table contains " + cursor.getCount() + " books.\n\n");
-            displayView.append(BookEntry._ID + " - " + BookEntry.COLUMN_BOOK_NAME +
-                    " - " + BookEntry.COLUMN_BOOK_AUTHOR + " - " + BookEntry.COLUMN_BOOK_PRICE +
-                    " - " + BookEntry.COLUMN_BOOK_QUANTITY + " - " + BookEntry.COLUMN_BOOK_SUPPLIER_NAME +
-                    " - " + BookEntry.COLUMN_BOOK_SUPPLIER_PHONE + "\n");
-
-            // get index position for each column
-            int idColumnIndex = cursor.getColumnIndex(BookEntry._ID);
-            int nameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_NAME);
-            int authorColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_AUTHOR);
-            int priceColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_PRICE);
-            int quantityColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_QUANTITY);
-            int supplierNameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_SUPPLIER_NAME );
-            int supplierPhoneColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE);
-
-            // iterate through all rows, cursor starts at row -1 (column titles)
-            // therefore, first moveToNext() puts Cursor at row 0
-            while (cursor.moveToNext()) {
-
-                // use indices to extract table values
-                int currentID = cursor.getInt(idColumnIndex);
-                String currentName = cursor.getString(nameColumnIndex);
-                String currentAuthor = cursor.getString(authorColumnIndex);
-                float currentPrice = cursor.getFloat(priceColumnIndex);
-                int currentQuantity = cursor.getInt(quantityColumnIndex);
-                String currentSupplierName = cursor.getString(supplierNameColumnIndex);
-                String currentSupplierPhone = cursor.getString(supplierPhoneColumnIndex);
-
-                displayView.append("\n" + currentID + " - " + currentName + " - " + currentAuthor
-                        + " - " + currentPrice + " - " + currentQuantity + " - " + currentSupplierName
-                        + " - " + currentSupplierPhone);
-
+            // call helper method to perform the delete
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                deleteAllBooks();
             }
+        });
 
-        // always close cursor to prevent memory leaks
-        } finally {
-            cursor.close();
+        // negative button means cancel the navigation attempt and stay in the editor activity
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+            // return back to activity
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        // create and show the constructed dialog box
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
+
+    // helper method called when delete button is pressed in the delete confirmation dialog
+    private void deleteAllBooks() {
+
+        // perform a delete on the provider using a content resolver
+        int deletedRows = getContentResolver().delete(BookEntry.CONTENT_URI, null, null);
+
+        // toast to display success (or failure) of delete action
+        String toastMessage;
+
+        // row delete failed and therefore the number of deleted rows is zero
+        if (deletedRows == 0) {
+            toastMessage = getString(R.string.delete_failed);
+
+        // row delete successful
+        } else {
+            toastMessage = getString(R.string.delete_successful);
         }
 
+        // display toast message
+        Toast toast = Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT);
+        toast.show();
+
     }
 
+    // called by initLoader() in onCreate()
+    @Override
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+
+        // define projection (column names) for query
+        String[] projection = {BookEntry._ID, BookEntry.COLUMN_BOOK_NAME, BookEntry.COLUMN_BOOK_AUTHOR};
+
+        // CursorLoader requires the column projection includes the _ID column
+        return new CursorLoader(this, BookEntry.CONTENT_URI, projection, null, null, null);
+
+    }
+
+    // called by the system when a new cursor is finished being created by the loader
+    // refresh the adapter with this new cursor
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        mAdapter.swapCursor(cursor);
+    }
+
+    // called by the system when a previously created loader is being reset
+    // therefore the cursor data is no longer valid and the adapter is cleared
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mAdapter.swapCursor(null);
+    }
+    
 }

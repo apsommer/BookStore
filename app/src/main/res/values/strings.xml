@@ -3,10 +3,32 @@
     <!-- app name -->
     <string name="app_name">Book Store</string>
 
-    <!-- menu options for CatalogActivity -->
+    <!-- menu options for catalog activity -->
     <string name="action_insert_placeholder_data">Insert placeholder data</string>
     <string name="action_delete_all_entries">Delete all entries</string>
 
+    <!-- label for list item if the author is not specified -->
+    <string name="unknown_author">Unknown author</string>
 
+    <!-- title text for the empty view [CHAR LIMIT=50] -->
+    <string name="empty_view_title_text">Change the image above and this title ...</string>
+
+    <!-- subtitle text for the empty view [CHAR LIMIT=50] -->
+    <string name="empty_view_subtitle_text">Get started by adding a book</string>
+
+    <!-- dialog message asking the user to confirm deleting all books [CHAR LIMIT=NONE] -->
+    <string name="dialog_msg_delete_all_books">Delete all books?</string>
+
+    <!-- dialog button text for the option to confirm delete [CHAR LIMIT=20] -->
+    <string name="delete">Delete</string>
+
+    <!-- dialog button text for the option to cancel deletion [CHAR LIMIT=20] -->
+    <string name="cancel">Cancel</string>
+
+    <!-- Toast message for successful delete [CHAR LIMIT=NONE] -->
+    <string name="delete_successful">Book deleted</string>
+
+    <!-- Toast message for failes delete [CHAR LIMIT=NONE] -->
+    <string name="delete_failed">Error with deleting book</string>
 
 </resources>

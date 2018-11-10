@@ -39,17 +39,17 @@ public class MainActivity extends AppCompatActivity {
         displayDatabase();
     }
 
-    // create an overflow menu in the app bar
+    // create an overflow menu in the app bar, defaults to top right
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        // inflate the menu options from menu_main_activity
+        // inflate the menu options from layout menu_main_activity
         getMenuInflater().inflate(R.menu.menu_main_activity, menu);
         return true;
     }
 
     // create options within the menu
-    // this is essentially a listener
+    // behaves as a listener
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = db.query(BookEntry.TABLE_NAME, projection,
                 null, null, null, null, null, null);
 
-        // get reference to TextView in activity_catalog
+        // get reference to textview in layout activity_catalog
         TextView displayView = (TextView) findViewById(R.id.textview_activity_main);
 
         // try-finally block ensures that the cursor is always closed
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                     " - " + BookEntry.COLUMN_BOOK_QUANTITY + " - " + BookEntry.COLUMN_BOOK_SUPPLIER_NAME +
                     " - " + BookEntry.COLUMN_BOOK_SUPPLIER_PHONE + "\n");
 
-            // get index position (int) for each column
+            // get index position for each column
             int idColumnIndex = cursor.getColumnIndex(BookEntry._ID);
             int nameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_NAME);
             int authorColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_AUTHOR);
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
             int supplierNameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_SUPPLIER_NAME );
             int supplierPhoneColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE);
 
-            // iterate through all rows, Cursor starts at row -1 (column titles)
+            // iterate through all rows, cursor starts at row -1 (column titles)
             // therefore, first moveToNext() puts Cursor at row 0
             while (cursor.moveToNext()) {
 

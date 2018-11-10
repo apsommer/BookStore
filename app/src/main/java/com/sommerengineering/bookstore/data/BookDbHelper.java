@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 // contract inner class
 import com.sommerengineering.bookstore.data.BookContract.BookEntry;
 
+// helper manages access to sqlite database stored on device as persistent data
 public class BookDbHelper extends SQLiteOpenHelper {
 
     // established convention that database version begins at 1
@@ -15,17 +16,19 @@ public class BookDbHelper extends SQLiteOpenHelper {
 
     // defer to superclass constructor for initialization
     public BookDbHelper(Context context) {
+
+        // calls onCreate only if the database does not already exist on the device
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    // onCreate is only called from constructor if DATABASE_NAME does not exist on device
+    // only called from constructor if DATABASE_NAME does not exist on device
     // create new persistent sqlite database on device
     @Override
     public void onCreate(SQLiteDatabase db) {
 
         // build SQL query:
         // CREATE TABLE books (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL,
-        // author TEXT, price INTEGER NOT NULL, quantity INTEGER NOT NULL DEFAULT 0,
+        // author TEXT, price REAL NOT NULL, quantity INTEGER NOT NULL DEFAULT 0,
         // supplier_name TEXT, supplier_phone TEXT );
         String SQL_CREATE_PETS_TABLE =
                 "CREATE TABLE " + BookEntry.TABLE_NAME + " (" +

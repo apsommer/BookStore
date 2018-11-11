@@ -64,7 +64,9 @@
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:paddingLeft="4dp">
+            android:paddingLeft="4dp"
+            android:layout_marginBottom="12dp"
+            >
 
             <!-- quantity field -->
             <EditText
@@ -100,14 +102,59 @@
             android:layout_width="0dp"
             android:layout_weight="2"
             android:paddingLeft="4dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/decrease"
+                android:layout_width="@dimen/button_dimen"
+                android:layout_height="@dimen/button_dimen"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/button_margin"
+
+                android:background="@layout/button"
+                android:padding="0dp"
+                android:shadowColor="#A8A8A8"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
+                android:text="-"
+                android:textColor="#FFFFFF"
+                android:textSize="24dp"
+
+                />
 
             <!-- name field -->
             <EditText
                 android:id="@+id/edit_book_quantity"
                 android:hint="@string/hint_book_quantity"
                 android:inputType="number"
-                style="@style/EditorFieldStyle" />
+                style="@style/EditorFieldStyle"
+                android:layout_width="24dp"
+                android:background="@android:color/transparent"
+                android:layout_marginLeft="4dp"
+                android:gravity="center"
+
+                />
+
+            <Button
+                android:layout_width="@dimen/button_dimen"
+                android:layout_height="@dimen/button_dimen"
+                android:text="+"
+                android:textSize="24dp"
+
+                android:id="@+id/increase"
+
+                android:layout_margin="@dimen/button_margin"
+                android:layout_centerVertical="true"
+                android:padding="0dp"
+                android:textColor="#FFFFFF"
+                android:background="@layout/button"
+                android:shadowColor="#A8A8A8"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
+
+                />
 
         </LinearLayout>
 

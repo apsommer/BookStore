@@ -51,7 +51,7 @@
     <string name="hint_supplier_phone">800-123-4567</string>
 
     <!-- units of currency for the price of the book [CHAR LIMIT=5] -->
-    <string name="unit_book_price">USD</string>
+    <string name="unit_book_price">$ USD</string>
 
     <!-- app bar titles for two different modes of editor activity [CHAR LIMIT=20] -->
     <string name="editor_activity_title_edit_book">Edit book</string>

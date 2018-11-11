@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     >
     <corners
-        android:radius="14dp"
+        android:radius="18dp"
         />
     <gradient
         android:angle="45"

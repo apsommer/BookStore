@@ -10,4 +10,7 @@
     <!-- margin for the "Sale" button in list_item -->
     <dimen name="button_margin">4dp</dimen>
 
+    <!-- linear dimension for the + - icons in editor -->
+    <dimen name="button_dimen">36dp</dimen>
+
 </resources>

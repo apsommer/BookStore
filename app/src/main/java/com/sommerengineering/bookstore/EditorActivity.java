@@ -17,8 +17,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sommerengineering.bookstore.data.BookContract.BookEntry;
@@ -34,6 +36,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private EditText mQuantityEditText;
     private EditText mSupplierNameEditText;
     private EditText mSupplierPhoneEditText;
+    private Button mIncreaseButton;
+    private Button mDecreaseButton;
+
+    // track the total quantity of books
+    private int mQuantity;
 
     // integer ID of cursor loader
     private static final int BOOK_LOADER = 0;
@@ -95,6 +102,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mQuantityEditText = (EditText) findViewById(R.id.edit_book_quantity);
         mSupplierNameEditText = (EditText) findViewById(R.id.edit_book_supplier_name);
         mSupplierPhoneEditText = (EditText) findViewById(R.id.edit_book_supplier_phone);
+        mDecreaseButton = (Button) findViewById(R.id.decrease_button);
+        mIncreaseButton = (Button) findViewById(R.id.increase_button);
 
         // set a listener on each user input field
         mNameEditText.setOnTouchListener(mTouchListener);
@@ -103,6 +112,46 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mQuantityEditText.setOnTouchListener(mTouchListener);
         mSupplierNameEditText.setOnTouchListener(mTouchListener);
         mSupplierPhoneEditText.setOnTouchListener(mTouchListener);
+
+        // set a listener on the quantity "+" button
+        mIncreaseButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                // get value in edittext field
+                String quantityString = mQuantityEditText.getText().toString().trim();
+                int quantity = Integer.parseInt(quantityString);
+                
+                quantity += 1;
+
+                // increment the edittext value by one
+                mQuantityEditText.setText(String.format(Locale.getDefault(), "%d", quantity));
+
+            }
+        });
+
+        // set a listener on the quantity "+" button
+        mDecreaseButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                // get value in edittext field
+                String quantityString = mQuantityEditText.getText().toString().trim();
+                int quantity = Integer.parseInt(quantityString);
+
+                // zero is the lowest quantity allowed
+                if (quantity ==0) {
+                    return;
+                }
+                quantity -= 1;
+
+                // decrement the edittext value by one
+                mQuantityEditText.setText(String.format(Locale.getDefault(), "%d", quantity));
+
+            }
+        });
 
     }
 

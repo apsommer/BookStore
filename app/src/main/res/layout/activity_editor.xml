@@ -105,7 +105,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/decrease"
+                android:id="@+id/decrease_button"
                 android:layout_width="@dimen/button_dimen"
                 android:layout_height="@dimen/button_dimen"
                 android:layout_centerVertical="true"
@@ -132,7 +132,9 @@
                 android:layout_width="24dp"
                 android:background="@android:color/transparent"
                 android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:gravity="center"
+                android:layout_gravity="center"
 
                 />
 
@@ -142,7 +144,7 @@
                 android:text="+"
                 android:textSize="24dp"
 
-                android:id="@+id/increase"
+                android:id="@+id/increase_button"
 
                 android:layout_margin="@dimen/button_margin"
                 android:layout_centerVertical="true"

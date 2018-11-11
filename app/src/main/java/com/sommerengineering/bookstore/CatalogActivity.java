@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sommerengineering.bookstore.data.BookContract;
 import com.sommerengineering.bookstore.data.BookDbHelper;
 import com.sommerengineering.bookstore.data.BookContract.BookEntry;
 
@@ -75,7 +77,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         // setup click listener for items in the list view
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            // clicking an item in the list view opens the editor activity in "edit mode" for that pet
+            // clicking an item in the list view opens the editor activity in "edit mode" for that book
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
@@ -83,8 +85,8 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
                 Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
 
                 // include the content URI for the selected pet with the intent
-                Uri selectedPetURI = ContentUris.withAppendedId(BookEntry.CONTENT_URI, id);
-                intent.setData(selectedPetURI);
+                Uri selectedBookURI = ContentUris.withAppendedId(BookEntry.CONTENT_URI, id);
+                intent.setData(selectedBookURI);
 
                 // start editor activity in "edit mode"
                 startActivity(intent);
@@ -235,5 +237,23 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     public void onLoaderReset(Loader<Cursor> loader) {
         mAdapter.swapCursor(null);
     }
+
+//    // helper method TODO more comments
+//    public void decreaseQuantity(int rowID, int quantity) {
+//
+//        // TODO more comments
+//        quantity -= 1;
+//
+//        // TODO more comments
+//        ContentValues values = new ContentValues();
+//        values.put(BookEntry.COLUMN_BOOK_QUANTITY, quantity);
+//
+//        // TODO comments
+//        Uri updateURI = ContentUris.withAppendedId(BookEntry.CONTENT_URI, rowID);
+//
+//        // TODO comments
+//        getContentResolver().update(updateURI, values, null, null);
+//
+//    }
 
 }

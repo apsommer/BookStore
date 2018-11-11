@@ -6,10 +6,13 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 import com.sommerengineering.bookstore.data.BookContract.BookEntry;
+
+import java.util.Locale;
 
 public class BookCursorAdapter extends CursorAdapter {
 
@@ -34,6 +37,7 @@ public class BookCursorAdapter extends CursorAdapter {
         TextView nameTextView = (TextView) view.findViewById(R.id.name);
         TextView priceTextView = (TextView) view.findViewById(R.id.price);
         TextView quantityTextView = (TextView) view.findViewById(R.id.quantity);
+        //Button saleButton = (Button) view.findViewById(R.id.sale_button);
 
         // get index position for each column
         int nameIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_NAME);
@@ -47,8 +51,8 @@ public class BookCursorAdapter extends CursorAdapter {
 
         // set cursor data on views
         nameTextView.setText(name);
-        priceTextView.setText(String.format("$%.2f", price));
-        quantityTextView.setText(Integer.toString(quantity));
+        priceTextView.setText(String.format(Locale.getDefault(), "$%.2f", price));
+        quantityTextView.setText(String.format(Locale.getDefault(), "%d", quantity));
 
     }
 }

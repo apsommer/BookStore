@@ -19,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,9 +39,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private EditText mSupplierPhoneEditText;
     private Button mIncreaseButton;
     private Button mDecreaseButton;
-
-    // track the total quantity of books
-    private int mQuantity;
+    private ImageButton mCallButton;
 
     // integer ID of cursor loader
     private static final int BOOK_LOADER = 0;
@@ -104,6 +103,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mSupplierPhoneEditText = (EditText) findViewById(R.id.edit_book_supplier_phone);
         mDecreaseButton = (Button) findViewById(R.id.decrease_button);
         mIncreaseButton = (Button) findViewById(R.id.increase_button);
+        mCallButton = (ImageButton) findViewById(R.id.call_button);
 
         // set a listener on each user input field
         mNameEditText.setOnTouchListener(mTouchListener);
@@ -119,10 +119,10 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             @Override
             public void onClick(View v) {
 
-                // get value in edittext field
+                // get value from edittext field
                 String quantityString = mQuantityEditText.getText().toString().trim();
                 int quantity = Integer.parseInt(quantityString);
-                
+
                 quantity += 1;
 
                 // increment the edittext value by one
@@ -137,7 +137,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             @Override
             public void onClick(View v) {
 
-                // get value in edittext field
+                // get value from edittext field
                 String quantityString = mQuantityEditText.getText().toString().trim();
                 int quantity = Integer.parseInt(quantityString);
 
@@ -149,6 +149,27 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
                 // decrement the edittext value by one
                 mQuantityEditText.setText(String.format(Locale.getDefault(), "%d", quantity));
+
+            }
+        });
+
+        // set a listener on the supplier call button
+        mCallButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                // get value from edittext field
+                String phoneNumber = mSupplierPhoneEditText.getText().toString().trim();
+
+                // create implicit intent to dial a phone number
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+                dialIntent.setData(Uri.parse("tel:" + phoneNumber));
+
+                // ensure an app capable of handling the dial intent exists on the phone
+                if (dialIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(dialIntent);
+                }
 
             }
         });

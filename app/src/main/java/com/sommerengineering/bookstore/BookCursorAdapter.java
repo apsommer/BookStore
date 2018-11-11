@@ -37,7 +37,14 @@ public class BookCursorAdapter extends CursorAdapter {
         TextView nameTextView = (TextView) view.findViewById(R.id.name);
         TextView priceTextView = (TextView) view.findViewById(R.id.price);
         TextView quantityTextView = (TextView) view.findViewById(R.id.quantity);
-        //Button saleButton = (Button) view.findViewById(R.id.sale_button);
+        final Button saleButton = (Button) view.findViewById(R.id.sale_button);
+
+
+        saleButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                saleButton.setText("clicked");
+            }
+        });
 
         // get index position for each column
         int nameIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_NAME);

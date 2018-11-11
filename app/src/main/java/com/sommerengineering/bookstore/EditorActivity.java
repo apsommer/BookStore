@@ -308,7 +308,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         // if the URI exists, then the activity is in "edit mode" for an existing single book
         } else {
 
-            // perform an insert on the provider using a content resolver
+            // perform an update using the provider through a content resolver
             int updatedRow = getContentResolver().update(mSelectedBookURI, values, null, null);
 
             // row insert failed and therefore the number of affected rows is zero

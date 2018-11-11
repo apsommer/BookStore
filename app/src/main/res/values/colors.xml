@@ -4,10 +4,10 @@
     <!-- app color palette -->
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#008577</color>
+    <color name="colorAccent">#00574B</color>
 
     <!-- editor activity colors -->
-    <color name="editorColorPrimary">#2D3640</color>
-    <color name="editorColorPrimaryDark">#394450</color>
+    <color name="editorColorPrimary">#00574B</color>
+    <color name="editorColorPrimaryDark">#003830</color>
 
 </resources>

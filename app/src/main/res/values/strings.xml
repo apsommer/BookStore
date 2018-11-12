@@ -34,8 +34,7 @@
     <string name="toast_delete_failed">Error with deleting book</string>
     <string name="toast_save_successful">Book saved</string>
     <string name="toast_save_failed">Error saving book</string>
-    <string name="toast_quantity_at_zero">Quantity at 0</string>
-    <string name="toast_quantity_at_maximum">Quantity at 1000</string>
+    <string name="toast_quantity_at_zero">Zero quantity</string>
 
     <!-- label for categories in the editor [CHAR LIMIT=30] -->
     <string name="category_overview">Overview</string>

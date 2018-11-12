@@ -25,7 +25,7 @@
         <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="0dp"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:paddingLeft="4dp"
             android:orientation="vertical">
 
@@ -63,7 +63,7 @@
         <RelativeLayout
             android:layout_height="wrap_content"
             android:layout_width="0dp"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:paddingLeft="4dp"
             android:layout_marginBottom="12dp"
             >
@@ -79,7 +79,8 @@
             <TextView
                 android:id="@+id/label_price_units"
                 android:text="@string/unit_book_price"
-                style="@style/EditorUnitsStyle"/>
+                style="@style/EditorUnitsStyle"
+                />
 
         </RelativeLayout>
 
@@ -100,7 +101,7 @@
         <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="0dp"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:paddingLeft="4dp"
             android:orientation="horizontal">
 
@@ -176,7 +177,7 @@
         <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="0dp"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:paddingLeft="4dp"
             android:orientation="vertical">
 
@@ -187,31 +188,34 @@
                 android:inputType="textCapWords"
                 style="@style/EditorFieldStyle" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                >
 
             <!-- author field -->
             <EditText
-                android:layout_width="wrap_content"
+
 
                 android:id="@+id/edit_book_supplier_phone"
                 android:hint="@string/hint_supplier_phone"
                 android:inputType="phone"
-                style="@style/EditorFieldStyle" />
+                style="@style/EditorFieldStyle"
+                android:layout_toLeftOf="@id/call_button"
+                />
 
             <!-- call button -->
             <ImageButton
                 android:id="@+id/call_button"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_gravity="right"
+                android:layout_alignParentRight="true"
+
                 android:background="@drawable/selector_call_button"
 
                 />
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 

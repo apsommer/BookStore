@@ -353,8 +353,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         double price = 0;
         int quantity = 0;
 
-
-
         // under normal conditions the user specifies a price
         if (!TextUtils.isEmpty(quantityString)) {
             price = Double.parseDouble(priceString);

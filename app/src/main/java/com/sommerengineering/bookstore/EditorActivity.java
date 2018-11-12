@@ -44,7 +44,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     // integer ID of cursor loader
     private static final int BOOK_LOADER = 0;
 
-    // content URI for the selected existing book, null if new pet
+    // content URI for the selected existing book, null if new book
     private Uri mSelectedBookURI;
 
     // flag for unsaved user changes when navigating away from activity
@@ -162,6 +162,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 // get value from edittext field
                 String phoneNumber = mSupplierPhoneEditText.getText().toString().trim();
 
+                // do nothing if the supplier phone number is blank
+                if (TextUtils.isEmpty(phoneNumber)) {
+                    return;
+                }
+
                 // create implicit intent to dial a phone number
                 Intent dialIntent = new Intent(Intent.ACTION_DIAL);
                 dialIntent.setData(Uri.parse("tel:" + phoneNumber));
@@ -229,15 +234,15 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         // primary message title
-        builder.setMessage(R.string.dialog_msg_delete_single_pet);
+        builder.setMessage(R.string.dialog_msg_delete_single_book);
 
-        // positive button is a confirmation to delete the pet from the database
+        // positive button is a confirmation to delete the book from the database
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
 
             // call helper method to perform the delete
             @Override
             public void onClick(DialogInterface dialog, int i) {
-                deletePet();
+                deleteBook();
             }
         });
 
@@ -259,7 +264,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     // helper method called when delete button is pressed in the delete confirmation dialog
-    private void deletePet() {
+    private void deleteBook() {
 
         // if the URI exists, then the activity is in "edit mode" for an existing single book
         // if the URI is null, the FAB button was pressed and the activity is in "insert mode"

@@ -29,19 +29,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true" >
 
         <ImageView
             android:id="@+id/empty_bookshelf_image"
             android:layout_width="wrap_content"
-            android:layout_height="300dp"
+            android:layout_height="@dimen/empty_state_image_height"
             android:layout_centerHorizontal="true"
-
             android:src="@drawable/empty_bookshelf"
-            android:layout_marginTop="48dp"
-
-
-            />
+            android:layout_marginTop="@dimen/empty_state_image_margin" />
 
         <TextView
             android:id="@+id/empty_title_text"
@@ -50,7 +46,7 @@
             android:layout_below="@id/empty_bookshelf_image"
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif-medium"
-            android:paddingTop="16dp"
+            android:paddingTop="@dimen/empty_state_title_margin"
             android:text="@string/empty_view_title_text"
             android:textAppearance="?android:textAppearanceMedium" />
 
@@ -61,7 +57,7 @@
             android:layout_below="@id/empty_title_text"
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif"
-            android:paddingTop="8dp"
+            android:paddingTop="@dimen/empty_state_subtitle_margin"
             android:text="@string/empty_view_subtitle_text"
             android:textAppearance="?android:textAppearanceSmall"
             android:textColor="#A2AAB0" />

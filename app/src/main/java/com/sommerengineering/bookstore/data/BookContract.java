@@ -46,7 +46,7 @@ public final class BookContract {
         public static final String CONTENT_LIST_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE +
                 "/" + CONTENT_AUTHORITY + "/" + PATH_BOOKS;
 
-        // MIME type for a single pet
+        // MIME type for a single book
         // equivalent to "vnd.android.cursor.item/com.sommerengineering.bookstore/books"
         public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE +
                 "/" + CONTENT_AUTHORITY + "/" + PATH_BOOKS;

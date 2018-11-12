@@ -30,7 +30,7 @@ public class BookDbHelper extends SQLiteOpenHelper {
         // CREATE TABLE books (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL,
         // author TEXT, price REAL NOT NULL, quantity INTEGER NOT NULL DEFAULT 0,
         // supplier_name TEXT, supplier_phone TEXT );
-        String SQL_CREATE_PETS_TABLE =
+        String SQL_CREATE_BOOKS_TABLE =
                 "CREATE TABLE " + BookEntry.TABLE_NAME + " (" +
                         BookEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         BookEntry.COLUMN_BOOK_NAME + " TEXT NOT NULL, " +
@@ -41,7 +41,7 @@ public class BookDbHelper extends SQLiteOpenHelper {
                         BookEntry.COLUMN_BOOK_SUPPLIER_PHONE + " TEXT );";
 
         // execute SQL query
-        db.execSQL(SQL_CREATE_PETS_TABLE);
+        db.execSQL(SQL_CREATE_BOOKS_TABLE);
 
     }
 

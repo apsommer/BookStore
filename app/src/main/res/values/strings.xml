@@ -16,11 +16,11 @@
 
     <!-- titles for the empty state of the list view [CHAR LIMIT=50] -->
     <string name="empty_view_title_text">It\'s a bit lonely here...</string>
-    <string name="empty_view_subtitle_text">Get started by adding a book</string>
+    <string name="empty_view_subtitle_text">Get started by adding a book title</string>
 
     <!-- dialog message asking the user to confirm delete action [CHAR LIMIT=NONE] -->
     <string name="dialog_msg_delete_all_books">Delete all books?</string>
-    <string name="dialog_msg_delete_single_pet">Delete this book?</string>
+    <string name="dialog_msg_delete_single_book">Delete this book?</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
 
@@ -46,7 +46,6 @@
     <string name="hint_book_name">Title</string>
     <string name="hint_book_author">Author</string>
     <string name="hint_book_price">14.95</string>
-    <string name="hint_book_quantity">5</string>
     <string name="hint_supplier_name">Penguin Publishers</string>
     <string name="hint_supplier_phone">800-123-4567</string>
 
@@ -56,5 +55,10 @@
     <!-- app bar titles for two different modes of editor activity [CHAR LIMIT=20] -->
     <string name="editor_activity_title_edit_book">Edit book</string>
     <string name="editor_activity_title_add_a_book">Add a book</string>
+
+    <!-- quantity picker buttons in the editor -->
+    <string name="plus">+</string>
+    <string name="zero">0</string>
+    <string name="minus">–</string>
 
 </resources>

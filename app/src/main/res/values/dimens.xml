@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- margin around the floating action button in catalog activity -->
-    <dimen name="fab_margin">16dp</dimen>
-
     <!-- common margin value used in both activities -->
     <dimen name="activity_margin">12dp</dimen>
-
-    <!-- margin for the "Sale" button in list_item -->
     <dimen name="button_margin">4dp</dimen>
 
-    <!-- linear dimension for the + - icons in editor -->
+    <!-- editor activity -->
+    <dimen name="zero">0dp</dimen>
     <dimen name="button_dimen">36dp</dimen>
+    <dimen name="field_padding">4dp</dimen>
+    <dimen name="quantity_button_dimen">42dp</dimen>
+    <dimen name="quantity_edittext_width">24dp</dimen>
+    <dimen name="call_button_dimen">100dp</dimen>
+
+    <!-- catalog activity -->
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="empty_state_image_height">300dp</dimen>
+    <dimen name="empty_state_image_margin">48dp</dimen>
+    <dimen name="empty_state_title_margin">16dp</dimen>
+    <dimen name="empty_state_subtitle_margin">8dp</dimen>
 
 </resources>

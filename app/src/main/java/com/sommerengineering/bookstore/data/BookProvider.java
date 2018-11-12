@@ -64,15 +64,15 @@ public class BookProvider extends ContentProvider {
 
         switch (match) {
 
-            // full pets table
+            // full books table
             case BOOKS:
 
-                // perform a query on the entire pets table
+                // perform a query on the entire books table
                 cursor = database.query(BookEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
 
-            // specific row in pets table
+            // specific row in books table
             case BOOK_ID:
 
                 // the ? and array pattern protects against SQL injection hacker attacks
@@ -116,7 +116,7 @@ public class BookProvider extends ContentProvider {
                 // helper method returns content URI for this new row
                 return insertBook(uri, contentValues);
 
-            // case PET_ID: this case will never happen as insert is always with respect to the end of the entire table
+            // case BOOK_ID: this case will never happen as insert is always with respect to the end of the entire table
 
             // only the full table case is matched, everything else throws exception
             default:
@@ -154,7 +154,7 @@ public class BookProvider extends ContentProvider {
         // get reference to writable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
-        // insert new row into the pets table and get the new row id
+        // insert new row into the books table and get the new row id
         long newRowId = database.insert(BookEntry.TABLE_NAME, null, values);
 
         // if the insertion failed then newRowId = -1, return null
@@ -192,7 +192,7 @@ public class BookProvider extends ContentProvider {
                 // helper method returns integer number of rows updated
                 return updateBook(uri, contentValues, selection, selectionArgs);
 
-            // specific row in pets table
+            // specific row in books table
             case BOOK_ID:
 
                 // the ? and array pattern protects against SQL injection hacker attacks
@@ -258,7 +258,7 @@ public class BookProvider extends ContentProvider {
         // get reference to writable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
-        // update row(s) in pets table, and get the number of total rows affected
+        // update row(s) in books table, and get the number of total rows affected
         int rowsUpdated = database.update(BookEntry.TABLE_NAME, values, selection, selectionArgs);
 
         // if 1 or more rows of have changed then notify all listeners to this URI
@@ -294,7 +294,7 @@ public class BookProvider extends ContentProvider {
                 rowsDeleted = database.delete(BookEntry.TABLE_NAME, selection, selectionArgs);
                 break;
 
-            // specific row in pets table
+            // specific row in books table
             case BOOK_ID:
 
                 // the ? and array pattern protects against SQL injection hacker attacks
@@ -334,11 +334,11 @@ public class BookProvider extends ContentProvider {
 
         switch (match) {
 
-            // full pets table
+            // full books table
             case BOOKS:
                 return BookEntry.CONTENT_LIST_TYPE;
 
-            // specific row in pets table
+            // specific row in books table
             case BOOK_ID:
                 return BookEntry.CONTENT_ITEM_TYPE;
 

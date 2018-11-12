@@ -17,4 +17,5 @@
     <!-- default -->
     <item
         android:drawable="@drawable/phone_default" />
+
 </selector>

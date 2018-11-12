@@ -84,7 +84,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
                 // explicit intent to open editor activity
                 Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
 
-                // include the content URI for the selected pet with the intent
+                // include the content URI for the selected book with the intent
                 Uri selectedBookURI = ContentUris.withAppendedId(BookEntry.CONTENT_URI, id);
                 intent.setData(selectedBookURI);
 

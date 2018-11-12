@@ -8,13 +8,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/activity_margin"
-    tools:context=".EditorActivity">
+    tools:context=".EditorActivity" >
 
     <!-- overview category -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal" >
 
         <!-- label -->
         <TextView
@@ -24,10 +24,10 @@
         <!-- input fields -->
         <LinearLayout
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_weight="3"
-            android:paddingLeft="4dp"
-            android:orientation="vertical">
+            android:paddingLeft="@dimen/field_padding"
+            android:orientation="vertical" >
 
             <!-- name field -->
             <EditText
@@ -37,6 +37,7 @@
                 style="@style/EditorFieldStyle" />
 
             <!-- author field -->
+            
             <EditText
                 android:id="@+id/edit_book_author"
                 android:hint="@string/hint_book_author"
@@ -62,11 +63,10 @@
         <!-- input fields -->
         <RelativeLayout
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_weight="3"
-            android:paddingLeft="4dp"
-            android:layout_marginBottom="12dp"
-            >
+            android:paddingLeft="@dimen/field_padding"
+            android:layout_marginBottom="@dimen/field_padding" >
 
             <!-- quantity field -->
             <EditText
@@ -79,8 +79,7 @@
             <TextView
                 android:id="@+id/label_price_units"
                 android:text="@string/unit_book_price"
-                style="@style/EditorUnitsStyle"
-                />
+                style="@style/EditorUnitsStyle" />
 
         </RelativeLayout>
 
@@ -90,7 +89,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal" >
 
         <!-- label -->
         <TextView
@@ -100,63 +99,53 @@
         <!-- input fields -->
         <LinearLayout
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_weight="3"
-            android:paddingLeft="4dp"
-            android:orientation="horizontal">
+            android:paddingLeft="@dimen/field_padding"
+            android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/decrease_button"
-                android:layout_width="@dimen/button_dimen"
-                android:layout_height="@dimen/button_dimen"
+                android:layout_width="@dimen/quantity_button_dimen"
+                android:layout_height="@dimen/quantity_button_dimen"
                 android:layout_centerVertical="true"
                 android:layout_margin="@dimen/button_margin"
-
                 android:background="@layout/button"
-                android:padding="0dp"
                 android:shadowColor="#A8A8A8"
                 android:shadowDx="0"
                 android:shadowDy="0"
                 android:shadowRadius="5"
-                android:text="-"
-                android:textColor="#FFFFFF"
-                android:textSize="24dp"
-
-                />
+                android:text="@string/minus"
+                android:textColor="#ffffff"
+                android:textAppearance="?android:textAppearanceLarge" />
 
             <!-- name field -->
             <EditText
                 android:id="@+id/edit_book_quantity"
-                android:hint="@string/hint_book_quantity"
+                android:text="@string/zero"
                 android:inputType="number"
                 style="@style/EditorFieldStyle"
-                android:layout_width="24dp"
+                android:layout_width="@dimen/quantity_edittext_width"
                 android:background="@android:color/transparent"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
+                android:layout_marginLeft="@dimen/field_padding"
+                android:layout_marginRight="@dimen/field_padding"
                 android:gravity="center"
-                android:layout_gravity="center"
-
-                />
+                android:layout_gravity="center" />
 
             <Button
-                android:layout_width="@dimen/button_dimen"
-                android:layout_height="@dimen/button_dimen"
-                android:text="+"
-                android:textSize="24dp"
-
+                android:layout_width="@dimen/quantity_button_dimen"
+                android:layout_height="@dimen/quantity_button_dimen"
+                android:text="@string/plus"
+                android:textAppearance="?android:textAppearanceLarge"
                 android:id="@+id/increase_button"
                 android:layout_margin="@dimen/button_margin"
                 android:layout_centerVertical="true"
-                android:padding="0dp"
                 android:textColor="#FFFFFF"
                 android:background="@layout/button"
                 android:shadowColor="#A8A8A8"
                 android:shadowDx="0"
                 android:shadowDy="0"
-                android:shadowRadius="5"
-
-                />
+                android:shadowRadius="5" />
 
         </LinearLayout>
 
@@ -166,7 +155,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal" >
 
         <!-- label -->
         <TextView
@@ -176,9 +165,9 @@
         <!-- input fields -->
         <LinearLayout
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_weight="3"
-            android:paddingLeft="4dp"
+            android:paddingLeft="@dimen/field_padding"
             android:orientation="vertical">
 
             <!-- name field -->
@@ -190,36 +179,28 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content" >
 
             <!-- author field -->
             <EditText
-
-
                 android:id="@+id/edit_book_supplier_phone"
                 android:hint="@string/hint_supplier_phone"
                 android:inputType="phone"
                 style="@style/EditorFieldStyle"
-                android:layout_toLeftOf="@id/call_button"
-                />
+                android:layout_toLeftOf="@id/call_button" />
 
             <!-- call button -->
             <ImageButton
                 android:id="@+id/call_button"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="@dimen/call_button_dimen"
+                android:layout_height="@dimen/call_button_dimen"
                 android:layout_alignParentRight="true"
-
-                android:background="@drawable/selector_call_button"
-
-                />
+                android:background="@drawable/selector_call_button" />
 
             </RelativeLayout>
 
         </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>

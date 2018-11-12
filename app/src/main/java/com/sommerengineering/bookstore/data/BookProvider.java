@@ -95,7 +95,8 @@ public class BookProvider extends ContentProvider {
         }
 
         // set a notification for this content URI
-        // TODO comments about this notification and how it leads to automatic updates of cursor
+        // if the data at this URI changes, this cursor becomes invalid
+        // and query() method is automatically run again to refresh it
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
         return cursor;
 
@@ -164,7 +165,8 @@ public class BookProvider extends ContentProvider {
         }
 
         // if 1 or more rows of were inserted then notify all listeners to this URI
-        // TODO comments about notifications relating to cursor / list view automatic updates
+        // any cursor pointing to this URI is invalidated when the change notification occurs
+        // and the system calls the provider query() to refresh that cursor
         if (newRowId > 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }
@@ -181,7 +183,8 @@ public class BookProvider extends ContentProvider {
         final int match = mUriMatcher.match(uri);
 
         // notify all listeners to this URI
-        // TODO comments about notifications relating to cursor / list view automatic updates
+        // any cursor pointing to this URI is invalidated when the change notification occurs
+        // and the system calls the provider query() to refresh that cursor
         getContext().getContentResolver().notifyChange(uri, null);
 
         switch (match) {
@@ -316,7 +319,6 @@ public class BookProvider extends ContentProvider {
         }
 
         // if 1 or more rows of were deleted then notify all listeners to this URI
-        // TODO notification comments
         if (rowsDeleted != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }

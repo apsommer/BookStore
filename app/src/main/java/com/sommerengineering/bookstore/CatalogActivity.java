@@ -238,22 +238,4 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         mAdapter.swapCursor(null);
     }
 
-//    // helper method TODO more comments
-//    public void decreaseQuantity(int rowID, int quantity) {
-//
-//        // TODO more comments
-//        quantity -= 1;
-//
-//        // TODO more comments
-//        ContentValues values = new ContentValues();
-//        values.put(BookEntry.COLUMN_BOOK_QUANTITY, quantity);
-//
-//        // TODO comments
-//        Uri updateURI = ContentUris.withAppendedId(BookEntry.CONTENT_URI, rowID);
-//
-//        // TODO comments
-//        getContentResolver().update(updateURI, values, null, null);
-//
-//    }
-
 }

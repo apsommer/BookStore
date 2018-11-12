@@ -337,9 +337,23 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             return;
         }
 
-        // if the user leaves the quantity or price fields blank use a default value of 0
-        double price = 2.99;
+        // book title field must be entered to insert new book
+        if (TextUtils.isEmpty(name)) {
+
+            String toastMessage = getString(R.string.toast_enter_name);
+
+            // display toast message
+            Toast toast = Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT);
+            toast.show();
+
+            return;
+        }
+
+        // default values book attributes, used if user leaves field blank
+        double price = 0;
         int quantity = 0;
+
+
 
         // under normal conditions the user specifies a price
         if (!TextUtils.isEmpty(quantityString)) {

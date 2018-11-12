@@ -60,5 +60,6 @@
     <string name="plus">+</string>
     <string name="zero">0</string>
     <string name="minus">–</string>
+    <string name="toast_enter_name">Please enter a book title</string>
 
 </resources>

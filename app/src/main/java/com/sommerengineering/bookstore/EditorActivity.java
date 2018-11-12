@@ -320,6 +320,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     // save user inputs to persistent database
+    // no null values are accepted, all fields must be entered by user
     private void saveBook() {
 
         // get raw state of user fields as strings
@@ -330,22 +331,71 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String supplierName = mSupplierNameEditText.getText().toString().trim();
         String supplierPhone = mSupplierPhoneEditText.getText().toString().trim();
 
-        // if all fields are blank assume the user made a mistake and exit without saving
-        if (TextUtils.isEmpty(name) && TextUtils.isEmpty(author) && TextUtils.isEmpty(priceString)
-            && TextUtils.isEmpty(quantityString) && TextUtils.isEmpty(supplierName)
-                && TextUtils.isEmpty(supplierPhone)) {
-            return;
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(author) || TextUtils.isEmpty(priceString)
+                || TextUtils.isEmpty(supplierName) || TextUtils.isEmpty(supplierPhone)) {
+
         }
 
-        // book title field must be entered to insert new book
+        // the following five conditionals check for a valid entry in all user fields
+        // blank (null) values not allowed
+
+        // book title must be entered
         if (TextUtils.isEmpty(name)) {
 
-            String toastMessage = getString(R.string.toast_enter_name);
-
             // display toast message
+            String toastMessage = getString(R.string.toast_enter_name);
             Toast toast = Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT);
             toast.show();
 
+            // return to editor activity
+            return;
+        }
+
+        // book author must be entered
+        if (TextUtils.isEmpty(author)) {
+
+            // display toast message
+            String toastMessage = getString(R.string.toast_enter_author);
+            Toast toast = Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT);
+            toast.show();
+
+            // return to editor activity
+            return;
+        }
+
+        // book price must be entered
+        if (TextUtils.isEmpty(priceString)) {
+
+            // display toast message
+            String toastMessage = getString(R.string.toast_enter_price);
+            Toast toast = Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT);
+            toast.show();
+
+            // return to editor activity
+            return;
+        }
+
+        // book supplier must be entered
+        if (TextUtils.isEmpty(supplierName)) {
+
+            // display toast message
+            String toastMessage = getString(R.string.toast_enter_supplier_name);
+            Toast toast = Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT);
+            toast.show();
+
+            // return to editor activity
+            return;
+        }
+
+        // supplier phone must be entered
+        if (TextUtils.isEmpty(supplierPhone)) {
+
+            // display toast message
+            String toastMessage = getString(R.string.toast_enter_supplier_phone);
+            Toast toast = Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT);
+            toast.show();
+
+            // return to editor activity
             return;
         }
 
@@ -353,15 +403,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         double price = 0;
         int quantity = 0;
 
-        // under normal conditions the user specifies a price
-        if (!TextUtils.isEmpty(quantityString)) {
-            price = Double.parseDouble(priceString);
-        }
-
-        // under normal conditions the user specifies a quantity
-        if (!TextUtils.isEmpty(quantityString)) {
-            quantity = Integer.parseInt(quantityString);
-        }
+        // change data type of price and quantity
+        price = Double.parseDouble(priceString);
+        quantity = Integer.parseInt(quantityString);
 
         // container for key : value pairs
         ContentValues values = new ContentValues();
@@ -413,6 +457,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         Toast toast = Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT);
         toast.show();
 
+        // all user fields entered and book saved, return to catalog activity
+        finish();
+
     }
 
     // overflow menu
@@ -438,7 +485,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 saveBook();
 
                 // exit activity and return to catalog activity
-                finish();
+                //finish();
                 return true;
 
             // menu option "Delete"

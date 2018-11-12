@@ -35,6 +35,11 @@
     <string name="toast_save_successful">Book saved</string>
     <string name="toast_save_failed">Error saving book</string>
     <string name="toast_quantity_at_zero">Zero quantity</string>
+    <string name="toast_enter_name">Enter a book title</string>
+    <string name="toast_enter_author">Enter a book author</string>
+    <string name="toast_enter_price">Enter a book price</string>
+    <string name="toast_enter_supplier_name">Enter a book supplier</string>
+    <string name="toast_enter_supplier_phone">Enter a supplier phone</string>
 
     <!-- label for categories in the editor [CHAR LIMIT=30] -->
     <string name="category_overview">Overview</string>
@@ -60,6 +65,5 @@
     <string name="plus">+</string>
     <string name="zero">0</string>
     <string name="minus">–</string>
-    <string name="toast_enter_name">Please enter a book title</string>
 
 </resources>
